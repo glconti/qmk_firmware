@@ -2,6 +2,8 @@
 
 #ifdef RGBLIGHT_ENABLE
 
+    #include "layers.h"
+
     #define INDICATOR_BRIGHTNESS 30
 
     #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override
@@ -105,18 +107,14 @@
           layer_colemakdh_lights
       );
 
-      // layer_state_t layer_state_set_user(layer_state_t state) {
-      // 	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
-      // 	rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_COLEMAKDH));
+      layer_state_t layer_state_set_user(layer_state_t state) {
+      	rgblight_set_layer_state(0, layer_state_cmp(state, _COLEMAKDH));
+      	rgblight_set_layer_state(2, layer_state_cmp(state, _SYMBOL));
+      	rgblight_set_layer_state(2, layer_state_cmp(state, _MOVE));
+      	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
+          return state;
+      }
 
-
-      // 	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
-      // 	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
-      // 	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
-      // 	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
-      // 	rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
-      //     return state;
-      // }
       void keyboard_post_init_user(void) {
           // Enable the LED layers
           rgblight_layers = my_rgb_layers;
