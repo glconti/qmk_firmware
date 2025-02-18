@@ -1,32 +1,29 @@
- /* Copyright 2020 Josef Adamcik
-  * Modification for VIA support and RGB underglow by Jens Bonk-Wiltfang
-  *
-  * This program is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU General Public License as published by
-  * the Free Software Foundation, either version 2 of the License, or
-  * (at your option) any later version.
-  *
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU General Public License for more details.
-  *
-  * You should have received a copy of the GNU General Public License
-  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  */
+/* Copyright 2020 Josef Adamcik
+ * Modification for VIA support and RGB underglow by Jens Bonk-Wiltfang
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-//Sets up what the OLED screens display.
+// Sets up what the OLED screens display.
+// #define OLED_ENABLE
 
 #ifdef OLED_ENABLE
 
-#include "layers.h"
+#    include "layers.h"
 
 static void render_logo(void) {
-    static const char PROGMEM qmk_logo[] = {
-        0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
-        0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,
-        0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
-    };
+    static const char PROGMEM qmk_logo[] = {0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94, 0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4, 0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4, 0};
 
     oled_write_P(qmk_logo, false);
 }
@@ -40,24 +37,32 @@ static void print_status_narrow(void) {
 
     switch (get_highest_layer(layer_state)) {
         case _COLEMAKDH:
-            oled_write_P(PSTR("Base\n"), false);
+            oled_write_ln_P(PSTR("BASE"), false);
             break;
         case _SYMBOL:
-            oled_write_P(PSTR("Symbol\n"), false);
+            oled_write_ln_P(PSTR("SYMB"), false);
             break;
         case _MOVE:
-            oled_write_P(PSTR("Move"), false);
+            oled_write_ln_P(PSTR("MOVE"), false);
             break;
         case _NUMPAD:
-            oled_write_P(PSTR("NumPad"), false);
+            oled_write_ln_P(PSTR("NUM"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
-    oled_write_P(PSTR("\n\n"), false);
 
+    oled_write_P(PSTR("\n\n"), false);
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
+
+    uint8_t matrixMode = rgb_matrix_get_mode();
+
+    oled_write_ln_P(PSTR("RGB: "), false);
+    char mode_str[4];
+    snprintf(mode_str, sizeof(mode_str), "%d", matrixMode);
+    oled_write_ln_P(mode_str, false);
+    oled_write_ln_P("", false);
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -73,7 +78,7 @@ bool oled_task_user(void) {
     } else {
         render_logo();
     }
-	return false;
+    return false;
 }
 
 #endif
