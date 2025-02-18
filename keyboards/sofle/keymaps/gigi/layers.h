@@ -3,8 +3,8 @@
 
 enum sofle_layers {
     _COLEMAKDH = 0,
-    _LOWER,
-    _RAISE,
+    _SYMBOL,
+    _MOVE,
     _NUMPAD
 };
 

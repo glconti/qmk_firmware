@@ -11,8 +11,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
 		} else if (index == 1) {
 			switch (get_highest_layer(layer_state)) {
-			case _RAISE:
-			case _LOWER:
+			case _SYMBOL:
+			case _MOVE:
 					if (clockwise) {
 						tap_code(KC_PGDN);
 					} else {
