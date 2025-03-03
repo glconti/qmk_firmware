@@ -79,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC_GRV,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_MINS,
             KC_DEL,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                    KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN,  KC_BSPC,
           KC_TAB_NUM, KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,  KC_QUOT,
-             KC_LGUI, KC_Z,   KC_X,    KC_C,    KC_D,    KC_V, KC_MUTE_PLAY,   KC_HOME, KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH, KC_INS,
-                    KC_LCTL, KC_LALT, KC_LSHIFT_CAPS, KC_SYMBO , KC_SPC,       KC_ENT,  KC_MOVE, KC_RSHIFT_CAPS, KC_RALT, KC_RCTL
+             KC_LGUI, KC_Z,   KC_X,    KC_C,    KC_D,    KC_V, KC_MUTE_PLAY,   KC_HOME, KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH, KC_ENT,
+                    KC_LCTL, KC_LALT, KC_LSHIFT_CAPS, KC_SYMBO , KC_SPC,       KC_SPC,  KC_MOVE, KC_RSHIFT_CAPS, KC_RALT, KC_RCTL
 ),
 /* SYMBOL
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
    _______,   XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,                       KC_MPRV, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, KC_F12,
    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       KC_MPLY, XXXXXXX, XXXXXXX, KC_LCBR, KC_RCBR, KC_PIPE,
-   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,     _______, KC_MNXT, _______, XXXXXXX, KC_EQL, KC_BSLS, _______,
+   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,     _______, KC_MNXT, _______, XXXXXXX, KC_EQL, KC_BSLS, KC_INS,
                      _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
 ),
 /* MOVE
